@@ -1,0 +1,26 @@
+{
+  "name": "playing_with_charts",
+  "version": "0.0.0",
+  "description": "This is a experimental work with d3 charts and sinatra microframework",
+  "main": "index.js",
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/EduardoMRB/playing_with_charts.git"
+  },
+
+  "author": "Eduardo Miguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EduardoMRB/playing_with_charts/issues"
+  },
+  "homepage": "https://github.com/EduardoMRB/playing_with_charts",
+
+  "dependencies": {
+    "gulp": "~3.6.*",
+    "gulp-rename": "~1.2.*",
+    "gulp-concat": "~2.2.*",
+    "gulp-uglify": "~0.3.*",
+    "gulp-minify-css": "~0.3.*"
+  }
+}
