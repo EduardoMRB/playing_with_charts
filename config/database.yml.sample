@@ -1,0 +1,6 @@
+database:
+  adapter: mongodb
+  host: localhost
+  database: phone_count
+  user: 
+  password: 
