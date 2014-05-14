@@ -19,6 +19,7 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "bootstrap": "~3.1.1",
-    "d3": "~3.4.6"
+    "d3": "~3.4.6",
+    "angular-latest": "~1.2.16"
   }
 }
