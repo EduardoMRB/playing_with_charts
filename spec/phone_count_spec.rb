@@ -35,8 +35,6 @@ end
 
 describe PhoneCount::EventDataMapper do
   before :each do
-    time = Time.now.utc
-    allow(Time).to receive(:now) { time }
     @db = Mongo::MongoClient.new("localhost").db("phone_count_test")
     @event_coll = @db.collection("event")
     params = { "quantity" => 2, "date" => -> () { Time.now }.() } 
@@ -49,19 +47,29 @@ describe PhoneCount::EventDataMapper do
     @db.collection("event").drop
   end
 
+  describe "#find_by_date" do
+    it "should find event by date" do
+      Timecop.freeze(Chronic.parse('now')) do
+        @mapper.insert(@event)
+        event = @mapper.find_by_date(Time.now)
+      end
+    end
+  end
+
   describe "#insert" do
     it "should insert event correclty" do
       @mapper.insert(@event)
       @event_coll.find_one.should have(3).items
       @event_coll.find.should have(1).item
     end
-  end
 
-  describe "#find_by_date" do
-    it "should find event by date" do
-      @mapper.insert(@event)
-      event = @mapper.find_by_date(Time.now)
-      event.should == @event
+    context "it has an event registered for the same day" do
+      it "should return 2 events" do
+        @mapper.insert(@event)
+        @mapper.insert(@event)
+        events = @mapper.find_by_date(Time.now)
+        events.should have(2).items
+      end
     end
   end
 end

@@ -37,9 +37,19 @@ module PhoneCount
       @collection.insert(event.to_hash)
     end
 
-    def find_by_date(date)
-      event = @collection.find({ date: date }).to_a[0]
-      Event.new(event)
+    def find_by_date(timestamp)
+      start, end_date = date_range_from_timestamp(timestamp)
+      events = @collection.find({ date: { "$gte" => start, "$lt" => end_date }}).to_a
+
+      events.map { |event| Event.new(event) } unless events.empty?
     end
+
+    private 
+      
+      def date_range_from_timestamp(timestamp)
+        start = Time.new(timestamp.year, timestamp.month, timestamp.day)
+        end_date = Time.new(timestamp.year, timestamp.month, timestamp.day + 1)
+        [start, end_date]
+      end
   end
 end
