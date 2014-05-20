@@ -44,6 +44,12 @@ module PhoneCount
       events.map { |event| Event.new(event) } unless events.empty?
     end
 
+    def find_all
+      @collection.find.map do |bson_object|
+        Event.new(bson_object) 
+      end
+    end
+
     private 
       
       def date_range_from_timestamp(timestamp)

@@ -72,4 +72,24 @@ describe PhoneCount::EventDataMapper do
       end
     end
   end
+
+  describe "#find_all" do
+    it "'s items should be an instance of Event" do
+      @mapper.insert(@event)
+      @mapper.insert(@event)
+      @mapper.insert(@event)
+
+      @mapper.find_all.each do |event|
+        event.should be_an_instance_of(PhoneCount::Event)
+      end
+    end
+
+    it "should retrieve all inserted events" do
+      @mapper.insert(@event)
+      @mapper.insert(@event)
+      @mapper.insert(@event)
+
+      @mapper.find_all.should have(3).items
+    end
+  end
 end
