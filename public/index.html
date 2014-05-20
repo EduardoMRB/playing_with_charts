@@ -12,7 +12,7 @@
     <h3 class="text-muted">Phone Count</h3>
   </div>
   
-  <div class="col-lg-6">
+  <div class="col-lg-6" ng-controller="AddPhoneController">
     <h2>Registre um horário de ligação</h2>
 
     <form>
@@ -25,7 +25,9 @@
         <input class="form-control" type="date" name="date">
       </div>
 
-      <button class="btn btn-default" type="button">Registrar!</button>
+      <button class="btn btn-default" type="button" ng-click="addPhone()">
+        Registrar!
+      </button>
     </form>
   </div>
 </div>
