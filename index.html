@@ -28,6 +28,10 @@
                 ng-model="date">
         </div>
 
+        <div class="form-errors">
+          {{ error }}
+        </div>
+
         <button class="btn btn-default" type="button" ng-click="addEvent(quantity, date)">
           Registrar!
         </button>
