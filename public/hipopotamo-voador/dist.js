@@ -10,15 +10,23 @@ var phoneCount = angular.module('phoneCount', ['ngRoute', 'phoneCountFilters']);
 phoneCount.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
-      when('/add', {
+      when('/', {
         templateUrl: 'partials/add.html',
         controller: 'AddCtrl'
-      }).
-      when('/chart', {
-        templateUrl: 'partials/chart.html',
-        controller: 'ChartCtrl'
-      }).
-      otherwise({
+      })
+      .when('/customers', {
+        templateUrl: 'partials/customers.html',
+        controller: 'CustomerCtrl'
+      })
+      .when('/staff', {
+        templateUrl: 'partials/staff.html',
+        controller: 'StaffCtrl'
+      })
+      .when('/contact', {
+        templateUrl: 'partials/contact.html',
+        controller: 'ContactCtrl'
+      })
+      .otherwise({
         redirectTo: '/'
       });
   }]);
@@ -68,3 +76,30 @@ phoneCount.controller('AddCtrl', ['$scope', '$routeParams',
       }
     };
   }]);
+
+phoneCount.controller('CustomerCtrl', ['$scope', '$routeParams', 
+    function ($scope, $routeParams) {
+      $scope.customers = [];
+
+      $scope.addCustomer = function () {
+        var customer = { name: $scope.name, cpf: $scope.cpf };
+        $scope.customers.push(customer);
+      };
+    }]);
+
+phoneCount.controller('StaffCtrl', ['$scope', '$routeParams', 
+    function ($scope, $routeParams) {
+      $scope.members = [];
+
+      $scope.addStaffMember = function () {
+        var member = { name: $scope.name, id: $scope.id };
+        $scope.members.push(member);
+      };
+    }]);
+
+phoneCount.controller('ContactCtrl', ['$scope', '$routeParams', 
+    function ($scope, $routeParams) {
+      $scope.send = function () {
+        alert('Caro ' + $scope.name + ', sua mensagem foi enviada');
+      };
+    }]);

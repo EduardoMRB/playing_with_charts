@@ -1,0 +1,38 @@
+<div ng-controller="CustomerCtrl">
+  <div class="row">
+    <div class="col-lg-12">
+      <form action="" role="form">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input id="name" class="form-control" type="text" ng-model="name">
+        </div>
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input id="cpf" class="form-control" type="text" ng-model="cpf">
+        </div>
+
+        <button class="btn btn-default" type="button" ng-click="addCustomer()">
+          Cadastrar!
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table">
+        <thead>
+          <th>Nome</th>
+          <th>CPF</th>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="customer in customers">
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.cpf }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
