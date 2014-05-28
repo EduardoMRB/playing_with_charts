@@ -1,42 +1,52 @@
-<div class="row" ng-controller="AddCtrl">
-  <div class="col-lg-6">
-    <h2>Registre um horário de ligação</h2>
+<div ng-controller="AddCtrl">
+  <div class="row com-block">
+    <div class="col-lg-5 col-lg-offset-3">
 
-    <form>
-      <div class="form-group">
-        <label for="quantity">Quantidade de ligações</label>
-        <input class="form-control" type="number" 
-              name="quantity" ng-model="quantity">
-      </div>
-      <div class="form-group">
-        <label for="date">Data</label>
-        <input class="form-control" type="date" name="date"
-              ng-model="date">
-      </div>
+      <form class="well">
+        <fieldset>
+          <legend>Registre um horário de ligação</legend>
+          <div class="form-group">
+            <label for="quantity">Quantidade de ligações</label>
+            <input class="form-control" type="number" 
+                  name="quantity" ng-model="quantity">
+          </div>
+          <div class="form-group">
+            <label for="date">Data</label>
+            <input class="form-control" type="date" name="date"
+                  ng-model="date">
+          </div>
 
-      <div class="form-errors">
-        {{ error }}
-      </div>
+          <div class="form-errors">
+            {{ error }}
+          </div>
 
-      <button class="btn btn-default" type="button" ng-click="addEvent(quantity, date)">
-        Registrar!
-      </button>
-    </form>
+          <button class="btn btn-primary" type="button" ng-click="addEvent(quantity, date)">
+            Registrar!
+          </button>
+        </fieldset>
+      </form>
+    </div>
   </div>
 
-  <div class="col-lg-6">
-    <table class="table">
-      <thead>
-        <th>Data</th>
-        <th>Número de ligações</th>
-      </thead>
+  <hr>
 
-      <tbody>
-        <tr ng-repeat="event in events">
-          <td>{{ event.date | date }}</td>
-          <td>{{ event.quantity }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row" ng-if="events.length > 0">
+    <div class="col-lg-5 col-lg-offset-3">
+      <h2>Ligações registradas</h2>
+      <table class="table table-striped">
+        <thead>
+          <th>Data</th>
+          <th>Número de ligações</th>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="event in events">
+            <td>{{ event.date | date }}</td>
+            <td>{{ event.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
 </div>
